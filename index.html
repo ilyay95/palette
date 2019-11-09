@@ -11,23 +11,23 @@
             
             <div>
             <div class="tools">
-                <button><i class="fas fa-fill-drip"></i>Paint bucket(A)</button>
-                <button><i class="fas fa-eye-dropper"></i>Chose color(S)</button>
-                <button><i class="fas fa-arrows-alt"></i> Move(D)</button>
-                <button><i class="fas fa-exchange-alt"></i>Transform(F)</button>
+                <button class="toolsb"><i class="fas fa-fill-drip"></i>Paint bucket(A)</button>
+                <button class="toolsb"><i class="fas fa-eye-dropper"></i>Chose color(S)</button>
+                <button class="toolsb"><i class="fas fa-arrows-alt pencil"></i> Pencil)</button>
+                <button class="toolsb"><i class="fas fa-exchange-alt"></i>Transform(F)</button>
             </div>
             <div class="tools">
                 <div class="color">
-                    <div class="color-item"></div><span>Current color</span></div>
+                    <div class="color-item" id="curretColor"></div><span>Current color</span></div>
                 <div class="color">
-                    <div class="color-item"  ></div><span>Prev color</span></div>
+                    <div class="color-item " id="prevColor" ></div><span>Prev color</span></div>
                 <div class="color">
                     <div class="color-item" id="red"></div><span>Red</span></div>
                 <div class="color">
                     <div class="color-item" id="blue"></div><span>Blue</span></div>
             </div>
         </div>
-            <canvas></canvas>
+            <canvas id ="canvas"></canvas>
 
             
         </main>
