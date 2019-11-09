@@ -1,7 +1,7 @@
 let smallArr =[['#00BCD4', '#FFEB3B', '#FFEB3B', '#00BCD4'],
 ['#FFEB3B', '#FFC107', '#FFC107', '#FFEB3B'],
 ['#FFEB3B', '#FFC107', '#FFC107', '#FFEB3B'],
-['#00BCD4', '#FFEB3B', '#FFEB3B', '#00BCD4'];
+['#00BCD4', '#FFEB3B', '#FFEB3B', '#00BCD4']];
 
 
 function CurrentColor() {
@@ -10,53 +10,55 @@ function CurrentColor() {
 
 function Pencil(event, arr) {
   arr[Math.floor(event.offsetY / 128)][Math.floor(event.offsetX / 128)] = window.getComputedStyle( document.getElementById('curretColor') , null).getPropertyValue( 'background-color' );
-  return arr;
+  
 }
 
 function ColorPalette (arr) {
   document.getElementById('curretColor').style.background = arr[Math.floor(event.offsetY / 128)][Math.floor(event.offsetX / 128)];
-  return arr;
+  
 }
 
-function Filling(arr) {
-  arr.forEach((row) => {
-      row.forEach((elem, index, rowItem) => {
-          row[index] = CurrentColor();
-      })
-  });
+function FillingBlock(arr, newColor, oldColor, x, y) {
+  if (x >= 0 && x < arr.length && y >= 0 && y < arr.length && arr[x][y] === oldColor && arr[x][y] !== newColor) {
+      arr[x][y] = newColor;
 
-  console.log(arr);
-  return arr;
+      FillingBlock(arr, newColor, oldColor, x + 1, y);
+      FillingBlock(arr, newColor, oldColor, x - 1, y);
+      FillingBlock(arr, newColor, oldColor, x, y + 1);
+      FillingBlock(arr, newColor, oldColor, x, y - 1);
+  }
 }
 
 window.onload = () => {
-let arr = localStorage.getItem('canvas') ? JSON.parse(localStorage.getItem('canvas')) : smallImg;
-drawArray(4, arr);
+let arr = localStorage.getItem('canvas') ? JSON.parse(localStorage.getItem('canvas')) : smallArr ;
+drawArr(4, arr);
 let canvas = document.getElementById('canvas');
 
 canvas.addEventListener('click', (event) => {
   switch(document.getElementsByClassName('pencil')[0].children[1].innerHTML) {
       case 'Pencil':
-          arr = Pencil(event, arr)
+          Pencil(event, arr)
+          drawArr(4, arr);  
           break;
       case 'Choose color':
-          arr = ColorPalette(arr)
+           ColorPalette(arr)
           break;
       case 'Paint bucket':
-          arr = Filling(arr)
+      FillingBlock(arr, CurrentColor(), arr[Math.floor(event.offsetY / 128)][Math.floor(event.offsetX / 128)], Math.floor(event.offsetY / 128), Math.floor(event.offsetX / 128));
+      drawArr(4, arr); 
           break;
       default :
           break;
   }
 
-  drawArray(4, arr);
+ 
   localStorage.setItem('canvas', JSON.stringify(arr));
 });
 
 canvas.addEventListener('mousemove', (event) => {
   if (event.which === 1 && document.getElementsByClassName('pencil')[0].children[1].innerHTML === 'Pencil') {
       arr[Math.floor(event.offsetY / 128)][Math.floor(event.offsetX / 128)] = CurrentColor();
-      drawArray(4, arr);
+      drawArr(4, arr);
       localStorage.setItem('canvas', JSON.stringify(arr));
   }
 });
@@ -66,10 +68,10 @@ Array.from(document.getElementsByClassName("toolsb")).forEach(element => {
   element.addEventListener("click", () => {
       if (document.getElementsByClassName("pencil")[0]) {
           document.getElementsByClassName("pencil")[0].classList.remove("pencil");
-      }
-
-      element.classList.add("pencil");
-rray.from(document.getElementsByClassName('change')).forEach(element => {
+        element.classList.add("pencil");
+    });
+  });
+Array.from(document.getElementsByClassName('change')).forEach(element => {
   element.addEventListener("click", () => {
       if (element.children[0].id !== 'prevColor') {
           document.getElementById('prevColor').style.background = CurrentColor()
@@ -79,20 +81,17 @@ rray.from(document.getElementsByClassName('change')).forEach(element => {
       }
   });
 });
-function drawArray(size, arr) 
+function drawArr(size, arr) 
 {
   let canvas = document.getElementById('canvas');
   let ctx = canvas.getContext('2d');
-
   for (let i = 0; i < arr.length; i++) {
       for (let j = 0; j < arr[i].length; j++) {
-ctx.fillStyle = arr[i][j];
+          ctx.fillStyle = arr[i][j];
           ctx.fillRect(j * (canvas.width/size), i * (canvas.width/size), (canvas.width/size), (canvas.width/size));  
       }
   }
 }
-
-
 
 
   

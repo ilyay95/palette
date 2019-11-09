@@ -1,7 +1,7 @@
 body{
     max-width: 100%;
     margin: 0 auto;
-}
+} 
 
 header{
     height: 50px;
@@ -88,3 +88,33 @@ li{
   list-style-type: none;
 }
  
+.color-item {
+  cursor: pointer;
+}
+.color-item .color {
+  margin-left: 35px;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  border: 1px solid #9c9999;
+}
+.color-item:nth-child(1) .color, .color-item:nth-child(2) .color {
+  background: #fff;
+}
+.color-item:nth-child(4) .color {
+  background: #ff0000;
+}
+.color-item:nth-child(5) .color {
+  background: #0000ff;
+}
+.color-item span {
+  margin-left: 30px;
+}
+#canvas {
+  width: 512px;
+   height: 512px;
+   background: #a19e9e;
+   margin-top: 100px;
+   margin-left: 300px;
+   border: 1px solid #a19e9e;
+ }
