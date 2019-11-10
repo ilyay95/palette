@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Codejam Palette</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+<body>
+    <header class ="header"><h1>Codejam-palette</h1></header>
+    <section class="content">
+        <div class="tools">
+            <div class="toolsb">
+                <div class="tools-item">
+                    <img src="./data/bucket.svg" alt="">
+                    <span>Paint bucket</span>  (b)
+                </div>
+                <div class="tools-item">
+                    <img src="./data/pipette.png" alt="">
+                    <span>Choose color</span>  (p)
+                </div>
+                <div class="tools-item active">
+                    <img src="./data/Pencil.png" alt="">
+                    <span>Pencil</span>  (c)
+                </div>
+                <div class="tools-item">
+                    <img src="./data/transform.svg" alt="">
+                    <span>Transform</span>
+                </div>
+            </div>
+    
+            <div class="tools-colors">
+                <div class="colors_item">
+                    <div class="color" id = "current_color"><input type="color" id="color_input"></div>
+                    <span>Current color</span>
+                </div>
+                <div class="colors_item change">
+                    <div class="color change_color" id = "prev_color"></div>
+                    <span>Prev color</span>
+                </div>
+                <hr>
+                <div class="colors_item change">
+                    <div class="color change_color"></div>
+                    <span>red</span>
+                </div>
+                <div class="colors_item change">
+                    <div class="color change_color"></div>
+                    <span>blue</span>
+                </div>
+            </div>
+        </div>
+        
+        <canvas id = "canvas" width="512" height="512"></canvas>
+    </section>
+    <script src="main.js"></script>
+</body>
+</html>
