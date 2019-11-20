@@ -1,3 +1,16 @@
+https://ilyay95.github.io/palette/
+
+
+
+
+
+
+
+
+
+
+
+
 # palette
 
 | Deadline  | Folder name | Branch name |
